@@ -89,4 +89,25 @@ function sum(arr) {
 
 //6. Обращаем вспять массив
 
+function reverseArray(arr) {
+  let newArr = [];
+  for (let i = arr.length-1; i>=0; i--) {
+    newArr.push(arr[i])
+  }
+  return newArr;
+}
 
+function reverseArrayInPlace(arr) {
+  let first = 0;
+  let last = arr.length - 1;
+  while (first < last) {
+    let temp = arr[first];
+    arr[first] = arr[last];
+    arr[last] = temp;
+    first++;
+    last--;
+    
+  }
+  return arr
+}
+ //И полезным, и эффективным кажется второй вариант, потому что не занимает дополнительную память созданием нового массива, а так в зависимости от задачи, конечно
