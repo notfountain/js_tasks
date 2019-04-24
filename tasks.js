@@ -127,3 +127,13 @@ function arrayToList(arr) {
 
   return list
 }
+
+function listToArray(list) {
+  let arr = [];
+  let tmp = list;
+  while (tmp) {
+    arr.push(tmp.value);
+    tmp = tmp.next
+  }
+  return arr
+}
