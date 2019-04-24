@@ -111,3 +111,19 @@ function reverseArrayInPlace(arr) {
   return arr
 }
  //И полезным, и эффективным кажется второй вариант, потому что не занимает дополнительную память созданием нового массива, а так в зависимости от задачи, конечно
+
+//7. Список
+
+function arrayToList(arr) {
+  let list = {};
+  
+    for (let i=0; i<arr.length; i++) {
+      if (i!==arr.length - 1 ) {
+        list = {value: arr.shift(), next: arrayToList(arr) }}
+      else {
+        list = {value: arr.shift(), next: null }
+   }
+  }
+
+  return list
+}
