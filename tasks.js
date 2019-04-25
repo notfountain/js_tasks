@@ -116,12 +116,16 @@ function reverseArrayInPlace(arr) {
 
 function arrayToList(arr) {
   let list = {};
+  let arr1 = [];
+  for (let i=0; i<arr.length; i++) {
+    arr1.push(arr[i])
+  }
   
-    for (let i=0; i<arr.length; i++) {
-      if (i!==arr.length - 1 ) {
-        list = {value: arr.shift(), next: arrayToList(arr) }}
+    for (let i=0; i<arr1.length; i++) {
+      if (i!==arr1.length - 1 ) {
+        list = {value: arr1.shift(), next: arrayToList(arr1) }}
       else {
-        list = {value: arr.shift(), next: null }
+        list = {value: arr1.shift(), next: null }
    }
   }
 
@@ -137,3 +141,23 @@ function listToArray(list) {
   }
   return arr
 }
+
+function prepend(elem, list) {
+  return {value: elem, next: list}
+  
+}
+//нерекурсивный вариант
+function nth(list, num) {
+  let tmp = list;
+  let i = 1;
+  while (num!==i) {
+    if (tmp && tmp!==null) {
+      tmp = tmp.next;
+      i++;
+    }
+    else {
+      return undefined;
+    }
+  }
+  return tmp.value
+} 
