@@ -1,4 +1,4 @@
-//1.Треугольник в цикле
+//1.Треугольник в цикле (ПРИНЯТА)
 let a = '';
 
 for (let i=0; i<=6; i++) {
@@ -6,53 +6,51 @@ for (let i=0; i<=6; i++) {
   console.log(a)
 }
 
-//2. FizzBuzz
+//2. FizzBuzz (ИСПРАВЛЕНА)
 for (let i=1; i<=100; i++) {
-  if (i%3===0 && i%5!==0) {
+  if (i%3===0) {
+    if (i%5===0) {
+    console.log('FizzBuzz')
+    }
     console.log('Fizz')
   }
-  else if (i%5===0 && i%3!==0) {
+  else if (i%5===0) {
     console.log('Buzz')
-  }
-  else if (i%5===0 && i%3===0) {
-    console.log('FizzBuzz')
   }
   else {
     console.log(i)
   }
 }
 
-//3. Шахматная доска
+//3. Шахматная доска (ИСПРАВЛЕНА)
 
-for (let i=1; i<=8; i++) {
-  if (i%2!==0) {
+for (let i = 0; i<8; i++) {
     let a = [];
-    for (let j=1; j<=8; j++) {
-      if (j%2===0) {
-        a.push(' ');
+  for (let j = 0; j<8; j++) {
+    if (i%2!==0) {
+      if (j%2!==0) {
+      a.push('#')
       }
-      else if (j%2!==0){
-        a.push('#')
-      }
-  }
-    console.log(a)}
-  if (i%2===0) { 
-    let a = [];
-    for (let j=1; j<=8; j++) {
-      if (j%2===0) {
-        a.push('#');
-      }
-      else if (j%2!==0){
+      else {
         a.push(' ')
       }
     }
-    console.log(a)
+    else {
+      if (j%2!==0) {
+      a.push(' ')
+      }
+      else {
+        a.push('#')
+      }
     }
+  }
+  console.log(a)
 }
 
-//4. Рекурсия
+//4. Рекурсия (ИСПРАВЛЕНА)
 
 function isEven(n) {
+  n = Math.abs(n);
   let result;
   if (n===0) {
     return true;
@@ -66,28 +64,35 @@ function isEven(n) {
   
 }
 
-console.log(isEven(-1)) //Не выведет ничего, вероятно, из-за возникновения бесконечной рекурсии, потому что n надо бы брать по модулю, чтобы получить конечный результат
 
-//5. Сумма диапазона
+//5. Сумма диапазона (ИСПРАВЛЕНА)
 
 function range(start,end) {
+  if (start > end) {
+    let tmp = start;
+    start = end;
+    end = tmp;
+  }
   let arr = [];
-  for (let i = start; i <= end; i++) {
-    arr.push(i)
+  if (start === end) {
+    arr = [start]
+  }
+  else {
+    for (let i = start; i <= end; i++) {
+      arr.push(i)
+    }
   }
   return arr
 }
 
 function sum(arr) {
-  let s = 0;
-  for (let i=0; i < arr.length; i++) {
-    s += arr[i]
-  }
-  return s;
+  return arr.reduce(function(sum, current) {
+    return sum + current;
+  })
 }
 
 
-//6. Обращаем вспять массив
+//6. Обращаем вспять массив (ИСПРАВЛЕНА)
 
 function reverseArray(arr) {
   let newArr = [];
@@ -100,7 +105,7 @@ function reverseArray(arr) {
 function reverseArrayInPlace(arr) {
   let first = 0;
   let last = arr.length - 1;
-  while (first < last) {
+  while (first !== last) {
     let temp = arr[first];
     arr[first] = arr[last];
     arr[last] = temp;
@@ -110,7 +115,7 @@ function reverseArrayInPlace(arr) {
   }
   return arr
 }
- //И полезным, и эффективным кажется второй вариант, потому что не занимает дополнительную память созданием нового массива, а так в зависимости от задачи, конечно
+ 
 
 //7. Список
 
