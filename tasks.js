@@ -120,21 +120,19 @@ function reverseArrayInPlace(arr) {
 //7. Список
 
 function arrayToList(arr) {
-  let list = {};
-  let arr1 = [];
-  for (let i=0; i<arr.length; i++) {
-    arr1.push(arr[i])
-  }
+  let list = {value: null, next: null};
   
-    for (let i=0; i<arr1.length; i++) {
-      if (i!==arr1.length - 1 ) {
-        list = {value: arr1.shift(), next: arrayToList(arr1) }}
-      else {
-        list = {value: arr1.shift(), next: null }
-   }
-  }
-
-  return list
+    if (arr.length === 1) {
+      list.value = arr[0];
+      list.next = null
+      
+    }
+    else {
+      list.value = arr.shift();
+      list.next = arrayToList(arr)
+    }
+  
+  return list;
 }
 
 function listToArray(list) {
@@ -151,18 +149,60 @@ function prepend(elem, list) {
   return {value: elem, next: list}
   
 }
-//нерекурсивный вариант
+
 function nth(list, num) {
-  let tmp = list;
-  let i = 1;
-  while (num!==i) {
-    if (tmp && tmp!==null) {
-      tmp = tmp.next;
-      i++;
-    }
-    else {
-      return undefined;
-    }
+  if (num === 1) {
+    return list.value
   }
-  return tmp.value
-} 
+  else {
+    num -= 1;
+    list = list.next;
+    return nth(list,num)
+  }
+}
+
+//нерекурсивный вариант
+// function nth(list, num) {
+//   let tmp = list;
+//   let i = 1;
+//   while (num!==i) {
+//     if (tmp && tmp!==null) {
+//       tmp = tmp.next;
+//       i++;
+//     }
+//     else {
+//       return undefined;
+//     }
+//   }
+//   return tmp.value
+// } 
+
+//8. deepEqual
+
+function deepEqual(a,b) {
+  if (typeof a != 'object' && typeof b != 'object') {
+    if (a === b) {
+      return true
+    }
+    return false
+  }
+  
+  if (typeof a == 'object' && typeof b == 'object') {
+    if (a === null || b === null) {
+      if (a === b) {
+        return true
+      }
+      else {
+        return false
+      }
+    }
+  
+    for (var key in a) {
+      if (!deepEqual(a[key], b[key])) {
+          return false       
+      }
+    }        
+    return true
+      }
+     
+}
